@@ -1,9 +1,6 @@
 # Boogle
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/boogle`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+Boogle is a gem that takes off your hands from the haslle of dealing with [google books APIs](https://www.google.com)
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -21,21 +18,66 @@ Or install it yourself as:
     $ gem install boogle
 
 ## Usage
+#### 1 - Set the base connection
+```ruby
+boogle = Boogle::Client.new(key: 'api_key')
+```
 
-TODO: Write usage instructions here
+#### 2 - search for books
+search by key word only
+```ruby
+boogle.volume.search(keyword: 'flowers')
+```
+you can choose to search in specific field by
+```ruby
+booble.volume.search(keyword: 'flower', field: 'intitle')
+```
+[here is a list of other feilds](https://developers.google.com/books/docs/v1/using#PerformingSearch)
 
-## Development
+#### 3 - get book by id
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+boogle.volume.find(id: '_oG_iTxP1pIC')
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+#### 4 - list of books
+```ruby
+boogle.volume.list(user_id: '', bookshelf_id: '')
+```
+#### 5 - return libarary books
+```ruby
+boogle.volume.mylibrary(auth_token: '',  bookshelf_id: '')
+```
+#### 6 - remove a book
+```ruby
+boogle.volume.remove(auth_token: '', book_id: '', bookshelf_id: '')
+```
+#### 7 - Clearing all volumes from my bookshelf
+```ruby
+boogle.volume.clear(auth_token: '', bookshelf_id: '')
+```
 
+## Dealing with bookshelf
+
+#### 1- list user's bookshelves
+```ruby
+boogle.bookshelf.list(user_id: '')
+```
+
+#### 2 - find specific bookshelf
+```ruby
+boogle.bookshelf.find(user_id: '', bookshelf_id: '')
+```
+
+#### 3- my libarary bookshelves
+```ruby
+boogle.bookshelf.mylibarary(auth_token: '')
+```
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/boogle. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/hassantc/boogle. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

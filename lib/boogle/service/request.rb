@@ -10,9 +10,41 @@ module Boogle
           response.status == 200 ? handle_find_response(response.body) : errors(response)
         end
 
+        def add(auth_token, key, path)
+          response = api(key).post do |req|
+            req.url path
+            req.headers['Authorization'] = auth_token
+          end
+          response.status == 200 ? true : errors(response)
+        end
+
+        def remove(auth_token, key, path)
+          response = api(key).post do |req|
+            req.url path
+            req.headers['Authorization'] = auth_token
+          end
+          response.status == 200 ? true : errors(response)
+        end
+
+        def clear(auth_token, key, path)
+          response = api(key).post do |req|
+            req.url path
+            req.headers['Authorization'] = auth_token
+          end
+          response.status == 200 ? true : errors(response)
+        end
+
         def search(key, path, params)
           response = api(key).get do |req|
             req.url path, params
+          end
+          response.status == 200 ? handle_search_response(response.body) : errors(response)
+        end
+
+        def mylibrary(auth_token, key, path)
+          response = api(key).get do |req|
+            req.url path
+            req.headers['Authorization'] = auth_token
           end
           response.status == 200 ? handle_search_response(response.body) : errors(response)
         end
@@ -36,14 +68,15 @@ module Boogle
 
         def handle_find_response(response)
           response = JSON.parse(response)
-          Boogle::Traits::Volume.new(response)
+          response['kind'].include?('books#bookshelves') ? Boogle::Traits::Bookshelf.new(response) : Boogle::Traits::Volume.new(response)
         end
 
         def handle_search_response(response)
           response = JSON.parse(response)
           return [] unless response['items']
+          klass = response['kind'].include?('books#bookshelves') ? Boogle::Traits::Bookshelf : Boogle::Traits::Volume
           response['items'].map do |item|
-            Boogle::Traits::Volume.new(item)
+            klass.new(item)
           end
         end
 

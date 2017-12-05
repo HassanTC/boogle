@@ -3,7 +3,10 @@ require 'spec_helper'
 module Boogle
   module Traits
     RSpec.describe Volume do
-      subject { Boogle::Client.new(key: 'AIzaSyBqEUy33m8zdrsZjWOUm2w1bxaGyQEILBc').volume.find(id: '_oG_iTxP1pIC') }
+      subject { Boogle::Client.new(key: 'key').volume.find(id: '_oG_iTxP1pIC') }
+      before(:each) do
+        allow(Boogle::Service::Request).to receive(:find).and_return(Boogle::Traits::Volume.new(test_book))
+      end
       it { should respond_to :page_count }
       it { should respond_to :printed_page_count }
       it { should respond_to :print_type }

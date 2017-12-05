@@ -30,7 +30,7 @@ module Boogle
 
     it 'returns bookshelf object whne #bookshelf' do
       client = Boogle::Client.new(key: 'key')
-      expect(client.bookshelf).to be_a(Boogle::BookShelf)
+      expect(client.bookshelf).to be_a(Boogle::Bookshelf)
     end
   end
 end

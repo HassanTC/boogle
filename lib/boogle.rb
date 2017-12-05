@@ -7,9 +7,11 @@ require 'boogle/service/request'
 
 # how the object will render
 require 'boogle/traits/volume'
+require 'boogle/traits/bookshelf'
 
 # object operations
 require 'boogle/volume'
+require 'boogle/bookshelf'
 
 module Boogle
 end

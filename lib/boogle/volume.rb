@@ -17,6 +17,26 @@ module Boogle
       Boogle::Service::Request.search(@key, 'volumes', search_params)
     end
 
+    def list(user_id: '', bookshelf_id: '')
+      Boogle::Service::Request.search(@key, "users/#{user_id}/bookshelves/#{bookshelf_id}/volumes", {})
+    end
+
+    def mylibrary(auth_token: nil, bookshelf_id: '')
+      Booogle::Service::Request.mylibrary(auth_token, @key, "mylibrary/bookshelves/#{bookshelf_id}/volumes")
+    end
+
+    def add(auth_token: nil, book_id: '', bookshelf_id: '')
+      Booogle::Service::Request.add(auth_token, @key, "mylibrary/bookshelves/#{bookshelf_id}/addVolume?volumeId=#{book_id}")
+    end
+
+    def remove(auth_token: nil, book_id: '', bookshelf_id: '')
+      Booogle::Service::Request.add(auth_token, @key, "mylibrary/bookshelves/#{bookshelf_id}/removeVolume?volumeId=#{book_id}")
+    end
+
+    def clear(auth_token: nil, bookshelf_id: '')
+      Booogle::Service::Request.clear(auth_token, @key, "mylibrary/bookshelves/#{bookshelf_id}/clearVolumes")
+    end
+
     private
 
     def query(keyword, field)

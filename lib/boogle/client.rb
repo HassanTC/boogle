@@ -14,7 +14,7 @@ module Boogle
     end
 
     def bookshelf
-      Boogle::BookShelf.new(key)
+      Boogle::Bookshelf.new(key)
     end
   end
 end

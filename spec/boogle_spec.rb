@@ -1,7 +1,5 @@
 require 'spec_helper'
 
 RSpec.describe Boogle do
-  it 'has a version number' do
-    Boogle::VERSION.must_match(/\d+\.\d+\.\d+/)
-  end
+  it { expect(Boogle::VERSION).to match(/\d+\.\d+\.\d+/) }
 end
