@@ -5,16 +5,16 @@ module Boogle
   class BadRequest < BoogleErrors; end
   # 400: Invalid Sharing Request
   # 401: Invalid Credentials
-  class InvalidCredentials < BoogleError; end
+  class InvalidCredentials < BoogleErrors; end
   # 403: Daily Limit Exceeded
   # 403: User Rate Limit Exceeded
   # 403: Rate Limit Exceeded
   # 403: Sharing Rate Limit Exceeded
-  class LimitExceedeed < BoogleError; end
+  class LimitExceedeed < BoogleErrors; end
   # 404: resource not found: {fileId}
-  class ResourceNotFound < BoogleError; end
+  class ResourceNotFound < BoogleErrors; end
   # 429: Too Many Requests
-  class TooManyRequests < BoogleError; end
+  class TooManyRequests < BoogleErrors; end
   # 500: Backend Error
-  class UnexpectedError < BoogleError; end
+  class UnexpectedError < BoogleErrors; end
 end

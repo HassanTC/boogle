@@ -13,5 +13,7 @@ require 'boogle/traits/bookshelf'
 require 'boogle/volume'
 require 'boogle/bookshelf'
 
+#errors
+require 'boogle/errors'
 module Boogle
 end

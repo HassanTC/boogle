@@ -1,5 +1,3 @@
-require 'byebug'
-
 module Boogle
   module Service
     class Request
@@ -15,7 +13,7 @@ module Boogle
             req.url path
             req.headers['Authorization'] = auth_token
           end
-          response.status == 200 ? true : errors(response)
+          response.status == 204 ? true : errors(response)
         end
 
         def remove(auth_token, key, path)
@@ -23,7 +21,7 @@ module Boogle
             req.url path
             req.headers['Authorization'] = auth_token
           end
-          response.status == 200 ? true : errors(response)
+          response.status == 204 ? true : errors(response)
         end
 
         def clear(auth_token, key, path)
@@ -31,7 +29,7 @@ module Boogle
             req.url path
             req.headers['Authorization'] = auth_token
           end
-          response.status == 200 ? true : errors(response)
+          response.status == 204 ? true : errors(response)
         end
 
         def search(key, path, params)
