@@ -24,15 +24,15 @@ boogle = Boogle::Client.new(key: 'api_key')
 ```
 
 #### 2 - search for books
-search by key word only
+search by keyword only
 ```ruby
 boogle.volume.search(keyword: 'flowers')
 ```
 you can choose to search in specific field by
 ```ruby
-booble.volume.search(keyword: 'flower', field: 'intitle')
+boogle.volume.search(keyword: 'war', field: 'inauthor', infield: 'Ernest Hemingway') # get all war books written by Ernest Hemingway
 ```
-[here is a list of other feilds](https://developers.google.com/books/docs/v1/using#PerformingSearch)
+[here is a list of other fields](https://developers.google.com/books/docs/v1/using#PerformingSearch)
 
 #### 3 - get book by id
 

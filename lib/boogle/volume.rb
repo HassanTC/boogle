@@ -9,8 +9,8 @@ module Boogle
       Boogle::Service::Request.find(@key, 'volumes', id)
     end
 
-    def search(keyword: '', field: nil, download: nil, filter: nil, page: 1, per_page: 5, order_by: nil, projection: nil, type: 'all')
-      search_params = { q: query(keyword, field), download: download,
+    def search(keyword: '', field: nil, infield: nil, download: nil, filter: nil, page: 1, per_page: 5, order_by: nil, projection: nil, type: 'all')
+      search_params = { q: query(keyword, field, infield), download: download,
                         filter: filter, startIndex: page, maxResults: per_page,
                         printType: type, projection: projection,
                         orderBy: order_by }.reject { |_, v| v.nil? }
@@ -39,8 +39,8 @@ module Boogle
 
     private
 
-    def query(keyword, field)
-      field ? "#{keyword}+#{field}:keys" : keyword
+    def query(keyword, field, infield)
+      field && infield ? "#{keyword}+#{field}:#{infield}" : keyword
     end
   end
 end

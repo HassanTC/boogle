@@ -33,9 +33,15 @@ module Boogle
       end
 
       it 'return array of Boogle::Traits::Volume' do
-        response = client.volume.search(keyword: 'flower')
+        response = client.volume.search(keyword: 'flowers')
         expect(response).to be_a(Array)
         expect(response.first).to be_a(Boogle::Traits::Volume)
+      end
+
+      it 'should return the correct volumes when given an inauthor field' do
+        response = client.volume.search(keyword: 'flowers', field: 'inauthor', infield: 'keyes')
+        authors = response.collect(&:authors)
+        expect(authors.all? { |a| a.any? { |author_name| author_name.downcase.include? 'keyes' } })
       end
     end
 
