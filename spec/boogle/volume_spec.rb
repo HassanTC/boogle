@@ -41,7 +41,7 @@ module Boogle
       it 'should return the correct volumes when given an inauthor field' do
         response = client.volume.search(keyword: 'flowers', field: 'inauthor', infield: 'keyes')
         authors = response.collect(&:authors)
-        expect(authors.all? { |a| a.any? { |author_name| author_name.downcase.include? 'keyes' } })
+        expect(authors.all? { |a| a.any? { |author_name| author_name.downcase.include? 'keyes' } }).to be true
       end
     end
 
